@@ -1,0 +1,26 @@
+name: infinite-rails-server
+services:
+  server:
+    image: ghcr.io/koberecnikos/inifnite-rails-server-test:latest
+    container_name: infinite-rails-server
+    restart: unless-stopped
+    ports:
+      - "65002:65002/tcp"
+      - "25567:25567/udp"
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+    cpu_shares: 900
+    x-casaos:
+      icon: "https://infiniterails.com/wp-content/uploads/2024/12/Logo-2048.webp"
+      envs: []
+      ports:
+        - container: "65002"
+          description:
+            en_us: Web UI
+        - container: "25567"
+          description:
+            en_us: Game UDP Port
