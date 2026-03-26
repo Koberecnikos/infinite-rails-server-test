@@ -1,0 +1,18 @@
+name: infinite-rails-server
+services:
+  server:
+    image: ghcr.io/koberecnikos/inifnite-rails-server-test:latest
+    container_name: infinite-rails-server
+    restart: unless-stopped
+    ports:
+      - "65002:65002/tcp"
+      - "25567:25567/udp"
+    x-casaos:
+      envs: []
+      ports:
+        - container: "65002"
+          description:
+            en_us: Web UI
+        - container: "25567"
+          description:
+            en_us: Game UDP Port
