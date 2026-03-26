@@ -20,9 +20,11 @@ RUN wget -v -O server.tar.gz \
     "https://github.com/Koberecnikos/inifnite-rails-server-test/releases/latest/download/InfiniteRailsServerLinux.tar.gz" \
     || (echo "=== WGET SELHAL ===" && exit 1)
 
-RUN tar -xzf server.tar.gz \
-    && rm server.tar.gz \
-    && chmod +x ./InfiniteRailsServerLinux.x86_64
+RUN tar -tzf server.tar.gz && \
+    tar -xzf server.tar.gz --strip-components=1 && \
+    rm server.tar.gz && \
+    ls -la && \
+    chmod +x ./InfiniteRailsServerLinux.x86_64
 
 EXPOSE 7777/udp
 EXPOSE 7777/tcp
