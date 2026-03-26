@@ -31,4 +31,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/koberecnikos/inifnite-rails-server-test:latest
+          tags: |
+            ghcr.io/koberecnikos/inifnite-rails-server-test:latest
+            ghcr.io/koberecnikos/inifnite-rails-server-test:${{ github.ref_name }}
