@@ -15,9 +15,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /server
 
-RUN wget -O server.tar.gz \
+# Verbose wget aby videl co se deje
+RUN wget -v -O server.tar.gz \
     "https://github.com/Koberecnikos/inifnite-rails-server-test/releases/latest/download/InfiniteRailsServerLinux.tar.gz" \
-    && tar -xzf server.tar.gz \
+    || (echo "=== WGET SELHAL ===" && exit 1)
+
+RUN tar -xzf server.tar.gz \
     && rm server.tar.gz \
     && chmod +x ./InfiniteRailsServerLinux.x86_64
 
