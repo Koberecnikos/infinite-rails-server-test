@@ -1,1 +1,1 @@
-# inifnite-rails-server-test
+# infinite-rails-server-test
