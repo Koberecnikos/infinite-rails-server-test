@@ -18,11 +18,13 @@ WORKDIR /server
 RUN curl -L -o server.tar.gz \
     "https://github.com/Koberecnikos/inifnite-rails-server-test/releases/download/0.4.2/InfiniteRailsServerLinux.tar.gz" \
     && tar -xzf server.tar.gz \
-    && rm server.tar.gz \
-    && echo "=== STRUKTURA ===" \
-    && find . -type f | head -20
+    && rm server.tar.gz
+
+RUN echo "=== STRUKTURA ===" && find . -type f | head -30
+
+RUN find . -name "InfiniteRailsServerLinux.x86_64" -exec chmod +x {} \;
 
 EXPOSE 7777/udp
 EXPOSE 7777/tcp
 
-CMD ["bash", "-c", "find /server -name 'InfiniteRailsServerLinux.x86_64' -exec chmod +x {} \\; -exec {} -batchmode -nographics -logFile /proc/1/fd/1 \\;"]
+CMD ["bash", "-c", "$(find /server -name 'InfiniteRailsServerLinux.x86_64') -batchmode -nographics -logFile /proc/1/fd/1"]
